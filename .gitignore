@@ -1,0 +1,28 @@
+# Python
+*.pyc
+__pycache__/
+
+# Django
+db.sqlite3
+/static/
+media/
+
+# Environments
+env/
+venv/
+
+# Docker
+*.log
+*.pid
+*.seed
+*.lock
+*.coverage
+.pytest_cache/
+celerybeat-schedule
+__pycache__/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
