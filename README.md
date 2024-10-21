@@ -113,7 +113,19 @@ db:
     - "5432:5432"
 ```
 
-### 4. Projeyi Geliştirmek
+### 4. Fixtures Kullanımı
+
+Projede kullanılan sabit veriler fixtures dosyaları ile yüklenmiştir. Aşağıdaki adımları takip ederek veritabanınıza fixtures verilerini yükleyebilirsiniz:
+
+- **Parçalar** ve **Envanter** fixtures dosyalarını yüklemek için:
+
+   ```bash
+   docker-compose exec web python manage.py loaddata takimlar/fixtures/takimlar.json
+   docker-compose exec web python manage.py loaddata parcalar/fixtures/parcalar.json
+   docker-compose exec web python manage.py loaddata envanter/fixtures/envanter.json
+   ```
+
+### 5. Projeyi Geliştirmek
 
 Projeyi geliştirirken aşağıdaki komutları kullanabilirsiniz:
 
@@ -129,19 +141,19 @@ Projeyi geliştirirken aşağıdaki komutları kullanabilirsiniz:
   docker-compose exec web python manage.py test
   ```
 
-### 5. Proje İçeriği
+### 6. Proje İçeriği
 
 - **Django**: Python tabanlı web framework
 - **PostgreSQL**: Veritabanı
 - **Docker**: Konteynerizasyon
 - **Docker Compose**: Servislerin orkestrasyonu
 
-### 6. Sorun Giderme
+### 7. Sorun Giderme
 
 - **Port Çakışması**: Eğer PostgreSQL 5432 portunda başka bir uygulama çalışıyorsa, `docker-compose.yml` dosyasındaki portu değiştirin.
 - **CSRF Hataları**: Eğer form gönderimleri sırasında CSRF hatası alıyorsanız, CSRF token'ının düzgün bir şekilde ayarlandığından emin olun.
 
-### 7. Katkıda Bulunma
+### 8. Katkıda Bulunma
 
 Projeye katkıda bulunmak için lütfen şu adımları izleyin:
 
