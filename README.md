@@ -16,7 +16,7 @@ Proje çalıştırılmadan önce aşağıdaki yazılımların sisteminizde kurul
 ### 1. Projeyi Klonlayın
 
 ```bash
-git clone https://github.com/kullaniciadi/projeadi.git
+git clone https://github.com/erdemaltu/Python-Django-HavaAraciUretim.git
 cd projeadi
 ```
 
@@ -61,7 +61,7 @@ Docker kullanarak projenizi çalıştırmak için şu adımları izleyin:
    - **Windows**:
    
      ```bash
-     .\env\Scriptsctivate
+     .\env\scripts\activate
      ```
 
    - **MacOS / Linux**:
