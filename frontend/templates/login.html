@@ -1,0 +1,160 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="modal fade show" id="logreg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header tit-up">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Login</h4>
+          </div>
+          <div class="modal-body customer-box">
+              <!-- Tab panes -->
+              <div class="tab-content">
+                  <div class="tab-pane active" id="Login">
+                      <form id="login-form">
+                        <div id="error-message" style="display: none;"></div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                  {{form.username}}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                  {{form.password}}
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-10">
+                                  <input type="submit" value="Submit" class="btn btn-light btn-radius btn-brd grd1">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+<div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div id="home" class="first-section" style="background-image:url('https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/12af99aa-b461-4b9d-424f-68e6fbf4e200/public');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-right">
+                                <div class="big-tagline">
+                                    <h2><strong>BAYRAKTAR </strong> KIZILELMA</h2>
+                                    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
+                                        <a href="#" class="hover-btn-new"><span>İletişime Geç</span></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" class="hover-btn-new"><span>Daha Fazla Oku</span></a>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url('https://cdn.motor1.com/images/mgl/YpvVw/s1/akinci-belgeseli.jpg');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-left">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight">BAYRAKTAR <strong>AKINCI</strong></h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
+                                        <a href="#" class="hover-btn-new"><span>İletişime Geç</span></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" class="hover-btn-new"><span>Daha Fazla Oku</span></a>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url('https://cdn.baykartech.com/media/upload/userFormUpload/2QkXy8oiBgE4Gyf2E3KZ3f82mbW408zu.jpg');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight"><strong>BAYRAKTAR</strong> TB-2</h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took</p>
+                                        <a href="#" class="hover-btn-new"><span>İletişime Geç</span></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" class="hover-btn-new"><span>Daha Fazla Oku</span></a>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <!-- Left Control -->
+        <a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="fa fa-angle-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <!-- Right Control -->
+        <a class="new-effect carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="fa fa-angle-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#login-form").submit(function (e) { //Login işlemleri
+            e.preventDefault();
+            
+            var formData = { //Girilen veriyi çekme
+                username: $("#username").val(),
+                password: $("#password").val(),
+            };
+    
+            $.ajax({
+                type: "POST",
+                url: "/api/personeller/login/", // API endpoint'i
+                data: JSON.stringify(formData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var takim = data.takim; // Takım bilgisini al
+                    // Takıma göre yönlendirme
+                    if (takim === 'Kanat Takımı' || takim === 'Gövde Takımı' || takim === 'Aviyonik Takımı' || takim === 'Kuyruk Takımı') {
+                        window.location.href = "/parca-dashboard/";
+                    } else if (takim === 'Montaj Takımı') {
+                        window.location.href = "/montaj-takimi-dashboard/";
+                    } else {
+                        window.location.href = "/"; // Default yönlendirme
+                    }
+                },
+                error: function (error,xhr, textStatus, errorThrown) {
+                    alert("Bir hata oluştu. Tekrar deneyiniz.");
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

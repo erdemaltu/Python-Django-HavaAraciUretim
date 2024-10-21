@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: hava_araci_uretim_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 102030
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Dışarıdan 5433 portu, içeride 5432
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://user:102030@db:5432/hava_araci_uretim_db
+volumes:
+  postgres_data:

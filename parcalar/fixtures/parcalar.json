@@ -1,0 +1,162 @@
+[
+    {
+        "model": "parcalar.parca",
+        "pk": 1,
+        "fields": {
+            "isim": "Kanat",
+            "ucak_turu": "TB2",
+            "parca_turu": "kanat",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 2,
+        "fields": {
+            "isim": "Gövde",
+            "ucak_turu": "TB2",
+            "parca_turu": "govde",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 3,
+        "fields": {
+            "isim": "Kuyruk",
+            "ucak_turu": "TB2",
+            "parca_turu": "kuyruk",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 4,
+        "fields": {
+            "isim": "Aviyonik",
+            "ucak_turu": "TB2",
+            "parca_turu": "aviyonik",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 5,
+        "fields": {
+            "isim": "Kanat",
+            "ucak_turu": "TB3",
+            "parca_turu": "kanat",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 6,
+        "fields": {
+            "isim": "Gövde",
+            "ucak_turu": "TB3",
+            "parca_turu": "govde",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 7,
+        "fields": {
+            "isim": "Kuyruk",
+            "ucak_turu": "TB3",
+            "parca_turu": "kuyruk",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 8,
+        "fields": {
+            "isim": "Aviyonik",
+            "ucak_turu": "TB3",
+            "parca_turu": "aviyonik",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 9,
+        "fields": {
+            "isim": "Kanat",
+            "ucak_turu": "AKINCI",
+            "parca_turu": "kanat",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 10,
+        "fields": {
+            "isim": "Gövde",
+            "ucak_turu": "AKINCI",
+            "parca_turu": "govde",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 11,
+        "fields": {
+            "isim": "Kuyruk",
+            "ucak_turu": "AKINCI",
+            "parca_turu": "kuyruk",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 12,
+        "fields": {
+            "isim": "Aviyonik",
+            "ucak_turu": "AKINCI",
+            "parca_turu": "aviyonik",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 13,
+        "fields": {
+            "isim": "Kanat",
+            "ucak_turu": "KIZILELMA",
+            "parca_turu": "kanat",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 14,
+        "fields": {
+            "isim": "Gövde",
+            "ucak_turu": "KIZILELMA",
+            "parca_turu": "govde",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 15,
+        "fields": {
+            "isim": "Kuyruk",
+            "ucak_turu": "KIZILELMA",
+            "parca_turu": "kuyruk",
+            "stok_sayisi": 0
+        }
+    },
+    {
+        "model": "parcalar.parca",
+        "pk": 16,
+        "fields": {
+            "isim": "Aviyonik",
+            "ucak_turu": "KIZILELMA",
+            "parca_turu": "aviyonik",
+            "stok_sayisi": 0
+        }
+    }
+]

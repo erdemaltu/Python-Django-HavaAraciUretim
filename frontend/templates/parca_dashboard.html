@@ -1,0 +1,144 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Parça Listesi</h1>
+			<h2 class="text-light" id="team-name"></h2> <!-- Personelin takımı yazdırılacak -->
+		</div>
+	</div>
+
+    <div class="container">
+        <table class="table table-striped" id="parca-table"> <!-- Bootstrap classları ile stil verildi -->
+            <thead class="thead-dark">
+                <tr>
+                    <th>Parça Türü</th>
+                    <th>Uçak Türü</th>
+                    <th>Stok Sayısı</th>
+                    <th>Geri Dönüşen</th>
+                    <th>Parça Üret</th>
+                    <th>Geri Dönüşüme Gönder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Veriler AJAX ile burada listelenecek -->
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Kullanıcının takım bilgisini almak için AJAX isteği
+            $.ajax({
+                url: '/api/takimlar/personel',  // Takım bilgisi API endpoint'i
+                type: 'GET',
+                success: function (data) {
+                    $('#team-name').text(data.takim); // Takımı başlıkta göster
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);  // Hata mesajını konsola yazdır
+                    alert('Takım bilgisi alınırken bir hata oluştu.');
+                }
+            });
+
+            // Parçaları AJAX ile API'den çekip tabloya ekliyoruz
+            $.ajax({
+                url: '/api/parcalar/parcalar/',  // API endpoint URL
+                type: 'GET',
+                success: function (data) {
+                    var tableBody = $('#parca-table tbody');
+                    tableBody.empty();  // Tablonun içini temizle
+                    data.forEach(function (parca) {
+                        var row = `
+                            <tr>
+                                <td>${parca.parca_turu}</td>
+                                <td>${parca.ucak_turu}</td>
+                                <td>${parca.stok_sayisi}</td>
+                                <td>${parca.geri_donusen}</td>
+                                <td><button class="btn btn-success uretim-btn" data-id="${parca.id}">Parça Üret</button></td>
+                                <td><button class="btn btn-danger geri-donusum-btn" data-id="${parca.id}">Geri Dönüşüme Gönder</button></td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+
+                    // CSRF token'ını almak için meta tag'inden alıyoruz
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = cookies[i].trim();
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    var csrftoken = getCookie('csrftoken');
+
+                    // CSRF token'ını AJAX isteklerine ekliyoruz
+                    $.ajaxSetup({
+                        beforeSend: function(xhr, settings) {
+                            if (!(/^GET|HEAD|OPTIONS|TRACE$/.test(settings.type)) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        }
+                    });
+
+                    // Parça Üret butonuna tıklanınca PUT işlemi yapılır
+                    $('.uretim-btn').click(function () {
+                        var parcaId = $(this).data('id');
+
+                        $.ajax({
+                            url: `/api/parcalar/parcalar/${parcaId}/`,  // Parça ID'sine göre API endpoint
+                            type: 'PUT',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                action: 'uretim'  // Üretim işlemi
+                            }),
+                            success: function (response) {
+                                console.log(response);  // Gelen cevabı konsola yazdır
+                                alert('Parça üretildi. Stok güncellendi.');
+                                location.reload();  // Sayfayı yeniden yükleyerek tabloyu güncelle
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(xhr.responseText);  // Hata mesajını konsola yazdır
+                                alert('Parça üretimi sırasında bir hata oluştu.');
+                            }
+                        });
+                    });
+
+                    // Geri Dönüşüme Gönder butonuna tıklanınca DELETE işlemi yapılır
+                    $('.geri-donusum-btn').click(function () {
+                        var parcaId = $(this).data('id');
+
+                        $.ajax({
+                            url: `/api/parcalar/parcalar/${parcaId}/`,  // Parça ID'sine göre API endpoint
+                            type: 'DELETE',
+                            success: function (response) {
+                                console.log(response);  // Gelen cevabı konsola yazdır
+                                alert('Parça geri dönüştürüldü. Stok güncellendi.');
+                                location.reload();  // Sayfayı yeniden yükleyerek tabloyu güncelle
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(xhr.responseText);  // Hata mesajını konsola yazdır
+                                alert('Geri dönüşüm sırasında bir hata oluştu.');
+                            }
+                        });
+                    });
+
+                },
+                error: function () {
+                    alert('Parçalar yüklenirken bir hata oluştu.');
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

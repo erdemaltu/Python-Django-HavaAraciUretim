@@ -1,0 +1,50 @@
+[
+    {
+        "model": "envanter.Envanter",
+        "pk": 1,
+        "fields": {
+            "ucak_turu": "TB2",
+            "stok_miktari": 0,
+            "kanat_gereksinimi": 2,
+            "govde_gereksinimi": 1,
+            "kuyruk_gereksinimi": 1,
+            "aviyonik_gereksinimi": 1
+        }
+    },
+    {
+        "model": "envanter.Envanter",
+        "pk": 2,
+        "fields": {
+            "ucak_turu": "TB3",
+            "stok_miktari": 0,
+            "kanat_gereksinimi": 2,
+            "govde_gereksinimi": 1,
+            "kuyruk_gereksinimi": 1,
+            "aviyonik_gereksinimi": 1
+        }
+    },
+    {
+        "model": "envanter.Envanter",
+        "pk": 3,
+        "fields": {
+            "ucak_turu": "AKINCI",
+            "stok_miktari": 0,
+            "kanat_gereksinimi": 2,
+            "govde_gereksinimi": 1,
+            "kuyruk_gereksinimi": 1,
+            "aviyonik_gereksinimi": 1
+        }
+    },
+    {
+        "model": "envanter.Envanter",
+        "pk": 4,
+        "fields": {
+            "ucak_turu": "KIZILELMA",
+            "stok_miktari": 0,
+            "kanat_gereksinimi": 2,
+            "govde_gereksinimi": 1,
+            "kuyruk_gereksinimi": 1,
+            "aviyonik_gereksinimi": 1
+        }
+    }
+]

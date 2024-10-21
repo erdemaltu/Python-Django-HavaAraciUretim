@@ -1,0 +1,7 @@
+[
+    {"model": "takimlar.takim", "pk": 1, "fields": {"isim": "Kanat Takımı", "parca_turu": "kanat"}},
+    {"model": "takimlar.takim", "pk": 2, "fields": {"isim": "Gövde Takımı", "parca_turu": "govde"}},
+    {"model": "takimlar.takim", "pk": 3, "fields": {"isim": "Kuyruk Takımı", "parca_turu": "kuyruk"}},
+    {"model": "takimlar.takim", "pk": 4, "fields": {"isim": "Aviyonik Takımı", "parca_turu": "aviyonik"}},
+    {"model": "takimlar.takim", "pk": 5, "fields": {"isim": "Montaj Takımı", "parca_turu": "montaj"}}
+]

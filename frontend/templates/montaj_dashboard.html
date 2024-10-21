@@ -1,0 +1,130 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Envanter Listesi</h1>
+			<h2 class="text-white" id="team-name"></h2> <!-- Personelin takımı yazılacak -->
+		</div>
+	</div>
+
+    <div class="container">
+        <table class="table table-striped" id="montaj-table"> <!-- Bootstrap classları ile stil verildi -->
+            <thead class="thead-dark">
+                <tr>
+                    <th>Uçak Türü</th>
+                    <th>Stok Miktarı</th>
+                    <th>Kanat Gereksinimi</th>
+                    <th>Gövde Gereksinimi</th>
+                    <th>Kuyruk Gereksinimi</th>
+                    <th>Aviyonik Gereksinimi</th>
+                    <th>Montaj Yap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Veriler AJAX ile burada listelenecek -->
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Kullanıcının takım bilgisini almak için AJAX isteği
+            $.ajax({
+                url: '/api/takimlar/personel',  // Takım bilgisi API endpoint'i
+                type: 'GET',
+                success: function (data) {
+                    $('#team-name').text(data.takim); // Takımı başlıkta göster
+                },
+                error: function () {
+                    alert('Takım bilgisi alınırken bir hata oluştu.');
+                }
+            });
+
+            // Envanteri AJAX ile API'den çekip tabloya ekliyoruz
+            $.ajax({
+                url: '/api/envanter/ucaklar/',  // Envanter API endpoint URL
+                type: 'GET',
+                success: function (data) {
+                    var tableBody = $('#montaj-table tbody');
+                    tableBody.empty();  // Tablonun içini temizle
+                    data.forEach(function (ucak) {
+                        var row = `
+                            <tr>
+                                <td>${ucak.ucak_turu}</td>
+                                <td>${ucak.stok_miktari}</td>
+                                <td>${ucak.kanat_gereksinimi}</td>
+                                <td>${ucak.govde_gereksinimi}</td>
+                                <td>${ucak.kuyruk_gereksinimi}</td>
+                                <td>${ucak.aviyonik_gereksinimi}</td>
+                                <td><button class="btn btn-success montaj-btn" data-id="${ucak.id}">Montaj Yap</button></td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+
+                    // CSRF token'ını almak için meta tag'inden alıyoruz
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = cookies[i].trim();
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    var csrftoken = getCookie('csrftoken');
+
+                    // CSRF token'ını AJAX isteklerine ekliyoruz
+                    $.ajaxSetup({
+                        beforeSend: function(xhr, settings) {
+                            if (!(/^GET|HEAD|OPTIONS|TRACE$/.test(settings.type)) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        }
+                    });
+
+                    // Montaj Yap butonuna tıklanınca PUT işlemi yapılır
+                    $('.montaj-btn').click(function () {
+                        var ucakId = $(this).data('id');
+
+                        $.ajax({
+                            url: `/api/envanter/ucaklar/${ucakId}/`,  // Uçak ID'sine göre API endpoint
+                            type: 'PUT',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                action: 'montaj'  // Montaj işlemi
+                            }),
+                            success: function (response) {
+                                console.log(response);  // Gelen cevabı konsola yazdır
+                                alert('Montaj işlemi başarılı. Uçak üretildi ve stok güncellendi.');
+                                location.reload();  // Sayfayı yeniden yükleyerek tabloyu güncelle
+                            },
+                            error: function (xhr, status, error) {
+                                var errorMessage = 'Montaj işlemi sırasında bir hata oluştu.';
+                                if (xhr.responseJSON && xhr.responseJSON.error) {
+                                    errorMessage += '\nHata: ' + xhr.responseJSON.error;  // JSON formatında dönen hatayı ekle
+                                }
+                                console.log(xhr.responseText);  // Hata mesajını konsola yazdır
+                                alert(errorMessage);  // Hata mesajını kullanıcıya göster
+                            }
+                        });
+                    });
+
+                },
+                error: function () {
+                    alert('Envanter yüklenirken bir hata oluştu.');
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
