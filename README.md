@@ -162,3 +162,12 @@ Projeye katkıda bulunmak için lütfen şu adımları izleyin:
 3. Değişikliklerinizi commit'leyin (`git commit -m 'Add some AmazingFeature'`)
 4. Branch'inizi push'layın (`git push origin feature/AmazingFeature`)
 5. Bir pull request açın
+
+## Proje Ekran Görüntüleri
+
+![Giriş Sayfası](./screenshots/login.png)
+![Parça Listeleme & Parça Üretimi](./screenshots/parcalar.png)
+![Envanter Görüntüleme & Uçak Montajı](./screenshots/montaj.png)
+![Admin](./screenshots/admin.png)
+![Swagger](./screenshots/swagger.png)
+![Redoc](./screenshots/redoc.png)
